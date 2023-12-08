@@ -1,0 +1,43 @@
+import random
+
+keyword = input("Enter the word : ")
+keyword_cpy = keyword.upper()
+keyword = list(keyword.upper())
+
+
+word_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U','V', 'W', 'X', 'Y', 'Z']
+for i in range (len(keyword)):
+    letter = random.choice(word_list)
+    if letter not in keyword:
+        keyword.append(letter)
+random.shuffle(keyword)
+print(keyword)
+
+# alphabet_array = random.choice()
+guess = len(keyword_cpy)
+result = list()
+for i in range(len(keyword_cpy)):
+    result.append('-')
+
+while guess > 0  or result == keyword_cpy:
+    user_input = (input("Enter the letter")).upper()
+    if user_input in keyword_cpy:
+        index = keyword_cpy.find(user_input)
+        print(index)
+        result[index] = user_input
+        print(f"You have {guess - 1} chance remaining")
+        guess -= 1
+    else:
+        print(f"wrong input, you have {guess - 1} chance remaining")
+        guess -= 1
+
+print("This is the word after your guesses \n")
+result_word = ''
+result_word = result_word.join(result)
+print(result_word)
+user_in = input("Guess the word now  : ")
+if user_in == keyword_cpy:
+    print("congratulations!! You have won")
+else:
+    print(f"oOps!! You lost . The word is {keyword_cpy}")
+# print(result)
